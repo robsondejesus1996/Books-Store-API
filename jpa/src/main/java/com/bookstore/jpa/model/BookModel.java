@@ -23,12 +23,12 @@ public class BookModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @ManyToOne //(fetch = FetchType.LAZY)
+    @ManyToOne//(fetch = FetchType.LAZY)
     @JoinColumn(name = "publisher_id")
     private PublishModel publisher;
 
     //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY) //remover junto com FetchType.Lazy
-    @ManyToMany //(fetch = FetchType.LAZY)
+    @ManyToMany//(fetch = FetchType.LAZY)
     @JoinTable( //tabela auxiliar
             name = "tb_book_author",
             joinColumns = @JoinColumn(name = "book_id"),
