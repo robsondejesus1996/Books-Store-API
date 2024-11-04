@@ -1,46 +1,46 @@
 # Bookstore Project - Spring Boot Application
 
-Este projeto é uma aplicação para gerenciar uma livraria utilizando **Spring Boot** e **JPA (Java Persistence API)**. A aplicação permite operações CRUD (Create, Read, Update e Delete) em livros, incluindo autores e editoras, e integrações com banco de dados PostgreSQL.
+This project is an application to manage a bookstore using **Spring Boot** and **JPA (Java Persistence API)**. It allows CRUD operations (Create, Read, Update, and Delete) on books, including authors and publishers, and integrates with a PostgreSQL database.
 
-## Estrutura do Projeto
+## Project Structure
 
-O projeto está organizado seguindo a arquitetura MVC (Model-View-Controller), que promove uma separação clara entre as camadas de **modelo**, **serviço** e **controlador**. Esta organização permite uma manutenção simplificada e uma estrutura que facilita a expansão futura.
+The project is organized following the **MVC (Model-View-Controller)** architecture, promoting a clear separation between **model**, **service**, and **controller** layers. This structure simplifies maintenance and facilitates future scalability.
 
-### Camadas e Padrões
+### Layers and Patterns
 
-- **Controller**: Controladores expõem endpoints RESTful, permitindo a interação com a aplicação por meio de requisições HTTP.
-- **Service**: A camada de serviços contém a lógica de negócios e realiza as operações, integrando com o repositório de dados.
-- **Repository**: Usa o Spring Data JPA para realizar operações no banco de dados, abstraindo a complexidade das consultas SQL.
+- **Controller**: Controllers expose RESTful endpoints, allowing interaction with the application through HTTP requests.
+- **Service**: The service layer contains business logic and performs operations, integrating with the data repository.
+- **Repository**: Uses Spring Data JPA to perform database operations, abstracting the complexity of SQL queries.
 
-## Componentes da Aplicação
+## Application Components
 
-- **BookController**: Controlador que gerencia as operações de livros, como listar, criar e deletar livros. Exemplo de endpoints:
-  - `GET /bookstore/books`: Retorna todos os livros cadastrados.
-  - `POST /bookstore/books`: Cria um novo livro com base nos dados enviados.
-  - `DELETE /bookstore/books/{id}`: Deleta um livro pelo ID.
+- **BookController**: Controller that manages book operations, such as listing, creating, and deleting books. Example endpoints:
+  - `GET /bookstore/books`: Returns all registered books.
+  - `POST /bookstore/books`: Creates a new book based on the provided data.
+  - `DELETE /bookstore/books/{id}`: Deletes a book by ID.
 
-- **BookService**: A camada de serviço que contém a lógica de criação de um livro, associando-o a um autor, uma editora e uma revisão, quando fornecidos.
+- **BookService**: The service layer that contains the logic for creating a book, associating it with an author, a publisher, and a review when provided.
 
-- **BookRepository**: Interface que estende `JpaRepository`, permitindo o uso de métodos CRUD e a criação de consultas customizadas para o banco de dados.
+- **BookRepository**: Interface that extends `JpaRepository`, enabling the use of CRUD methods and creating custom database queries.
 
-## Modelagem do Banco de Dados
+## Database Modeling
 
-A aplicação utiliza **JPA** e **Hibernate** para mapeamento objeto-relacional (ORM). As entidades principais incluem:
+The application uses **JPA** and **Hibernate** for object-relational mapping (ORM). The main entities include:
 
-- **BookModel**: Representa um livro com um título, uma editora (publisher) e um conjunto de autores.
-- **AuthorModel**: Representa o autor de um ou mais livros.
-- **PublishModel**: Representa a editora de um livro.
-- **ReviewModel**: Representa uma revisão (review) associada a um livro.
+- **BookModel**: Represents a book with a title, a publisher, and a set of authors.
+- **AuthorModel**: Represents the author of one or more books.
+- **PublishModel**: Represents the publisher of a book.
+- **ReviewModel**: Represents a review associated with a book.
 
-### Relacionamentos entre Entidades
+### Entity Relationships
 
-- **BookModel e PublishModel**: Relacionamento Many-to-One, onde cada livro possui uma editora associada.
-- **BookModel e AuthorModel**: Relacionamento Many-to-Many, permitindo que um livro tenha múltiplos autores e vice-versa.
-- **BookModel e ReviewModel**: Relacionamento One-to-One, onde cada livro pode ter uma revisão associada.
+- **BookModel and PublishModel**: Many-to-One relationship, where each book is associated with a publisher.
+- **BookModel and AuthorModel**: Many-to-Many relationship, allowing a book to have multiple authors and vice versa.
+- **BookModel and ReviewModel**: One-to-One relationship, where each book can have an associated review.
 
-## Configuração do Banco de Dados
+## Database Configuration
 
-A aplicação está configurada para utilizar um banco de dados **PostgreSQL**, com os parâmetros de conexão definidos no arquivo `application.properties`:
+The application is configured to use a **PostgreSQL** database, with connection parameters defined in the `application.properties` file:
 
 ```properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/bookstore-jpa
@@ -49,7 +49,8 @@ spring.datasource.password=12345
 spring.jpa.hibernate.ddl-auto=update
 
 
-#### Exemplo de Código
+
+#### Code Example
 
 ```java
 @RestController
